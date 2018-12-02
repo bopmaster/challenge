@@ -67,7 +67,7 @@ class PaintMaker {
                         if (customerNumber <= customerCount) {
                             val caseList = it.split(" ")
                             lineResult = processLine(caseList, lineResult)
-                            var stringResult = ""
+                            var stringResult: String
                             // When processing the last customer we can give the result and reset the state
                             if (customerNumber == customerCount) {
                                 if (lineResult.isEmpty()) {
