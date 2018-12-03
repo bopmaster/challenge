@@ -1,12 +1,15 @@
 package com.example.challenge
 
 import java.io.ByteArrayInputStream
+import java.io.InputStream
 
 class ChallengePresenter(val view: ChallengeView) {
 
     val interactor = ChallengeInteractor(this)
 
-    fun showProgress() {}
+    fun showProgress(isLoading: Boolean) {
+        view.showProgress(isLoading)
+    }
 
     fun showResult(list: Array<String>) {
         if (list.isEmpty()) {
@@ -31,5 +34,9 @@ class ChallengePresenter(val view: ChallengeView) {
     fun solveStringInput(input: String) {
         val stream = ByteArrayInputStream(input.toByteArray(Charsets.UTF_8))
         interactor.processStringData(stream)
+    }
+
+    fun solveFileInput(inputStream: InputStream) {
+        interactor.processStringData(inputStream)
     }
 }

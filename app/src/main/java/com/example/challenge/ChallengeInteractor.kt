@@ -12,6 +12,7 @@ import java.io.InputStream
 class ChallengeInteractor(val presenter: ChallengePresenter) {
 
     fun fetchFileFromServer(url: String) {
+        presenter.showProgress(true)
         val retrofit = Retrofit
             .Builder()
             .baseUrl("https://www.zalando.fi")
@@ -25,17 +26,18 @@ class ChallengeInteractor(val presenter: ChallengePresenter) {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // Process data
+                    presenter.showProgress(false)
                     response.body()?.byteStream()?.let {
                         processStringData(it)
                         return
                     }
 
                     presenter.showError("")
-
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                presenter.showProgress(false)
                 presenter.showError(t.toString())
             }
 

@@ -2,7 +2,7 @@ package com.example.challenge
 
 interface ChallengeView {
 
-    fun showProgress()
+    fun showProgress(isLoading: Boolean)
 
     fun showResult(list: Array<String>)
 

@@ -16,10 +16,9 @@ class ResultDialog() : DialogFragment() {
         val style = DialogFragment.STYLE_NO_FRAME
         val theme = R.style.Theme_AppCompat_Dialog
         setStyle(style, theme)
-        val resultList = arguments?.getStringArray("RESULT_ARRAY")
+        val resultList = arguments?.getStringArray(RESULT_ARRAY)
         val listView = rootView.findViewById<ListView>(R.id.lv_result)
         listView!!.adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, resultList)
-        this.dialog.setTitle("Result")
         return rootView
     }
 
@@ -27,10 +26,12 @@ class ResultDialog() : DialogFragment() {
         /**
          * Create a new instance of CustomDialogFragment, providing "resultList" as an argument.
          */
+        const val RESULT_ARRAY = "RESULT_ARRAY"
+
         fun newInstance(result: Array<String>): ResultDialog {
             val resultFragment = ResultDialog()
             val args = Bundle()
-            args.putStringArray("RESULT_ARRAY", result)
+            args.putStringArray(RESULT_ARRAY, result)
             resultFragment.arguments = args
             return resultFragment
         }
