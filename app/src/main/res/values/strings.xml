@@ -7,4 +7,6 @@
     <string name="string_input_for_the_problem">String input for the problem</string>
     <string name="solve_problem">Solve problem</string>
     <string name="paint_result">PAINT_RESULT</string>
+    <string name="welcome_to_zalando_challenge_solver">Welcome to Zalando Challenge Solver</string>
+    <string name="results">Results</string>
 </resources>

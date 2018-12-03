@@ -12,13 +12,12 @@ import com.example.challenge.R
 class ResultDialog() : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog.setTitle(getString(R.string.results))
         val rootView = inflater.inflate(R.layout.result_dialog, container, false)
-        val style = DialogFragment.STYLE_NO_FRAME
-        val theme = R.style.Theme_AppCompat_Dialog
-        setStyle(style, theme)
         val resultList = arguments?.getStringArray(RESULT_ARRAY)
         val listView = rootView.findViewById<ListView>(R.id.lv_result)
         listView!!.adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, resultList)
+        isCancelable = true
         return rootView
     }
 
