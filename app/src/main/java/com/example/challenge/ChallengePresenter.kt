@@ -1,12 +1,20 @@
 package com.example.challenge
 
+import java.io.ByteArrayInputStream
+
 class ChallengePresenter(val view: ChallengeView) {
 
     val interactor = ChallengeInteractor(this)
 
     fun showProgress() {}
 
-    fun showResult(list: Array<String>) {}
+    fun showResult(list: Array<String>) {
+        if (list.isEmpty()) {
+            view.showError("Invalid Input")
+        } else {
+            view.showResult(list)
+        }
+    }
 
     fun showError(error: String) {
         view.showError(error)
@@ -20,7 +28,8 @@ class ChallengePresenter(val view: ChallengeView) {
         }
     }
 
-    fun openStringFile(url: String) {
-        interactor.fetchFileFromServer(url)
+    fun solveStringInput(input: String) {
+        val stream = ByteArrayInputStream(input.toByteArray(Charsets.UTF_8))
+        interactor.processStringData(stream)
     }
 }

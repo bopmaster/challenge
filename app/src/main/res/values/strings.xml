@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">challenge</string>
     <string name="action_settings">Settings</string>
+    <string name="link_to_your_file">Link to your file</string>
+    <string name="download">Download</string>
+    <string name="open_file">Open File</string>
+    <string name="string_input_for_the_problem">String input for the problem</string>
+    <string name="solve_problem">Solve problem</string>
+    <string name="paint_result">PAINT_RESULT</string>
 </resources>

@@ -13,9 +13,9 @@ class PaintMakerTest {
         val wholeOrder = PaintMaker().processOrderInput(inputStream)
 
         assertEquals(4, wholeOrder.count())
-        assertEquals("Case #1: 1 0 -1 -1 0", wholeOrder[0])
+        assertEquals("Case #1: 1 0 0 0 0", wholeOrder[0])
         assertEquals("Case #2: IMPOSSIBLE", wholeOrder[1])
-        assertEquals("Case #3: 0 1 -1", wholeOrder[2])
+        assertEquals("Case #3: 0 1 0", wholeOrder[2])
         assertEquals("Case #4: 0 0 1", wholeOrder[3])
     }
 

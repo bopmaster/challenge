@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:inputType="none"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no"/>
+        android:hint="@string/link_to_your_file"/>
 
     <Button
         android:id="@+id/btn_download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Download"
+        android:text="@string/download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_link_input"/>
@@ -28,7 +28,7 @@
         android:id="@+id/btn_open_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open File"
+        android:text="@string/open_file"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_download"/>
@@ -37,10 +37,20 @@
         android:id="@+id/et_text_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mint"
+        android:hint="@string/string_input_for_the_problem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_solve_challenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/solve_problem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

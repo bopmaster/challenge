@@ -1,5 +1,6 @@
 package com.example.challenge
 
+import com.example.challengelibrary.PaintMaker
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -41,8 +42,14 @@ class ChallengeInteractor(val presenter: ChallengePresenter) {
         })
     }
 
-    private fun processStringData(inputStream: InputStream) {
-        presenter.showError("YOLOOOOOO")
+    fun processStringData(inputStream: InputStream) {
+        val paintMaker = PaintMaker()
+        try {
+            val result = paintMaker.processOrderInput(inputStream)
+            presenter.showResult(result)
+        } catch (numberException: NumberFormatException) {
+            presenter.showError("Invalid Input")
+        }
     }
 
 }

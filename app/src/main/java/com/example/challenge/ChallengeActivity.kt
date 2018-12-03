@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
+import com.example.challenge.result.ResultDialog
 
 class ChallengeActivity : AppCompatActivity(), ChallengeView {
 
@@ -23,6 +24,7 @@ class ChallengeActivity : AppCompatActivity(), ChallengeView {
         val btnDownload = findViewById<Button>(R.id.btn_download)
         val etTextInput = findViewById<EditText>(R.id.et_text_input)
         val etLinkInput = findViewById<EditText>(R.id.et_link_input)
+        val btnSolveChallenge = findViewById<Button>(R.id.btn_solve_challenge)
 
         btnOpenFile.setOnClickListener {
             val intent = Intent()
@@ -33,6 +35,10 @@ class ChallengeActivity : AppCompatActivity(), ChallengeView {
 
         btnDownload.setOnClickListener {
             presenter.fetchString(etLinkInput.text.toString())
+        }
+
+        btnSolveChallenge.setOnClickListener {
+            presenter.solveStringInput(etTextInput.text.toString())
         }
     }
 
@@ -56,7 +62,9 @@ class ChallengeActivity : AppCompatActivity(), ChallengeView {
     }
 
     override fun showResult(list: Array<String>) {
-        /// Show result fragment
+        val fm = supportFragmentManager
+        val resultDialog = ResultDialog.newInstance(list)
+        resultDialog.show(fm, "")
     }
 
     override fun showError(error: String) {
