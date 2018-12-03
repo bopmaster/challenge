@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">challenge</string>
+    <string name="app_name">Zalando Challenge</string>
     <string name="action_settings">Settings</string>
     <string name="link_to_your_file">Direct Link to your file</string>
     <string name="download">Download</string>
@@ -9,4 +9,6 @@
     <string name="paint_result">PAINT_RESULT</string>
     <string name="welcome_to_zalando_challenge_solver">Welcome to Zalando Challenge Solver</string>
     <string name="results">Results</string>
+    <string name="or">or</string>
+    <string name="please_specify_your_input">Please Specify Your Input</string>
 </resources>

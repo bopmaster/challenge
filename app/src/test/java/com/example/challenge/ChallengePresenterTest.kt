@@ -98,7 +98,7 @@ class ChallengePresenterTest {
     @Test
     fun solveStringInput_withValidInput_success() {
         presenter.solveStringInput(
-            stubTestCase
+                stubTestCase
         )
 
         verify(mockCallback).onSuccess(anyOrNull())

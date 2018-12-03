@@ -20,25 +20,26 @@ class ChallengeInteractor(val callback: ChallengeInteractorCallback) {
     fun fetchFileFromServer(url: String) {
         callback.showProgress(true)
         val retrofit = Retrofit
-            .Builder()
-            .baseUrl("https://www.zalando.fi")
-            .client(OkHttpClient.Builder().build())
-            .build()
+                .Builder()
+                .baseUrl("https://www.zalando.fi")
+                .client(OkHttpClient.Builder().build())
+                .build()
         val fileService = retrofit.create(FileApi::class.java)
         val call = fileService.fetchFileFromUrl(url)
 
         call.enqueue(object : Callback<ResponseBody> {
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                callback.showProgress(false)
                 if (response.isSuccessful) {
                     // Process data
-                    callback.showProgress(false)
                     response.body()?.byteStream()?.let {
                         processStringData(it)
                         return
                     }
-
-                    callback.onFailure("")
+                    callback.onFailure("Unexpected Error")
+                } else {
+                    callback.onFailure("Invalid Link")
                 }
             }
 
@@ -56,7 +57,7 @@ class ChallengeInteractor(val callback: ChallengeInteractorCallback) {
             val result = paintMaker.processOrderInput(inputStream)
             callback.onSuccess(result)
         } catch (numberException: NumberFormatException) {
-            callback.onFailure("Invalid Input")
+            callback.onFailure("Invalid String Input")
         }
     }
 

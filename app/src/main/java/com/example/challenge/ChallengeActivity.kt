@@ -35,7 +35,7 @@ class ChallengeActivity : AppCompatActivity(), ChallengeView {
 
         btnOpenFile.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
-                .setType("*/*")
+                    .setType("*/*")
             startActivityForResult(Intent.createChooser(intent, "Select a file"), OPEN_FILE)
         }
 
@@ -44,7 +44,9 @@ class ChallengeActivity : AppCompatActivity(), ChallengeView {
         }
 
         btnSolveChallenge.setOnClickListener {
-            presenter.solveStringInput(etTextInput.text.toString())
+            if (etTextInput.text.toString().isNotEmpty()) {
+                presenter.solveStringInput(etTextInput.text.toString())
+            }
         }
     }
 
