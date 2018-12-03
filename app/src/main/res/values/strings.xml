@@ -10,5 +10,5 @@
     <string name="welcome_to_zalando_challenge_solver">Welcome to Zalando Challenge Solver</string>
     <string name="results">Results</string>
     <string name="or">or</string>
-    <string name="please_specify_your_input">Please Specify Your Input</string>
+    <string name="please_specify_your_input">Please Specify Your Input:</string>
 </resources>
