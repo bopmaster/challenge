@@ -9,10 +9,16 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.InputStream
 
-class ChallengeInteractor(val presenter: ChallengePresenter) {
+interface ChallengeInteractorCallback {
+    fun onSuccess(result: Array<String>)
+    fun onFailure(message: String)
+    fun showProgress(isLoading: Boolean)
+}
+
+class ChallengeInteractor(val callback: ChallengeInteractorCallback) {
 
     fun fetchFileFromServer(url: String) {
-        presenter.showProgress(true)
+        callback.showProgress(true)
         val retrofit = Retrofit
             .Builder()
             .baseUrl("https://www.zalando.fi")
@@ -26,19 +32,19 @@ class ChallengeInteractor(val presenter: ChallengePresenter) {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     // Process data
-                    presenter.showProgress(false)
+                    callback.showProgress(false)
                     response.body()?.byteStream()?.let {
                         processStringData(it)
                         return
                     }
 
-                    presenter.showError("")
+                    callback.onFailure("")
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                presenter.showProgress(false)
-                presenter.showError(t.toString())
+                callback.showProgress(false)
+                callback.onFailure(t.toString())
             }
 
         })
@@ -48,9 +54,9 @@ class ChallengeInteractor(val presenter: ChallengePresenter) {
         val paintMaker = PaintMaker()
         try {
             val result = paintMaker.processOrderInput(inputStream)
-            presenter.showResult(result)
+            callback.onSuccess(result)
         } catch (numberException: NumberFormatException) {
-            presenter.showError("Invalid Input")
+            callback.onFailure("Invalid Input")
         }
     }
 

@@ -3,11 +3,19 @@ package com.example.challenge
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 
-class ChallengePresenter(val view: ChallengeView) {
+class ChallengePresenter(val view: ChallengeView) : ChallengeInteractorCallback {
 
-    val interactor = ChallengeInteractor(this)
+    override fun onSuccess(result: Array<String>) {
+        view.showResult(result)
+    }
 
-    fun showProgress(isLoading: Boolean) {
+    override fun onFailure(message: String) {
+        view.showError(message)
+    }
+
+    var interactor = ChallengeInteractor(this)
+
+    override fun showProgress(isLoading: Boolean) {
         view.showProgress(isLoading)
     }
 
